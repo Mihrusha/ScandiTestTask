@@ -8,6 +8,7 @@ use App\Controller\Controller;
 
 $prod=new Controller;
 // $prod->disc->Hello();
- $prod->Get_All($conn);
-    
+
+ $prod->getAll($conn);
+
 ?>

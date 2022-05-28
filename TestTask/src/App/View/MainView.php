@@ -1,12 +1,9 @@
 <?php
 include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
 // include_once './Controlls\UserController.php';
-// use App\Model\DiscModel\Disc;
+
 // $item=new Disc;
 // $items=$item->get_all_items($conn);
-
-
-
 
 ?>
 
@@ -24,84 +21,74 @@ include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
 </head>
 
 
-<header>
-    <div class='container  p-3 m-8 border-2 border-bottom border-success '>
-        <div class='row'>
-            <div class='col-9'>
-                <h3>Product List </h3>
-            </div>
-            <div class='col'>
-                <form action='' method='post'>
-                    <input type='hidden' name='name' value='<?= $row['id'] ?> ' />
-                    <!-- <input type='hidden' name='read' value='read' /> -->
-                    <input type="submit" name='read' id='add-product-btn' class="btn btn-card border-2 btn-primary" value="ADD">
-
-                </form>
-            </div>
-            <div class='col'>
-                <form action='' method='post'>
-                    <input type='hidden' name='id' value='<?= $row['id'] ?>' />
-                    <!-- <input type='hidden' name='read' value='read' /> -->
-                    <input type="submit" name='delete' id='delete-product-btn' class="btn btn-card border-2 btn-danger" value="MASS DELETE">
-
-                </form>
-            </div>
-
-        </div>
-    </div>
-</header>
-
-
 
 <body>
 
 
-    <div class='row'>
+    <form action='' method='post'>
+
+
+        <div class='container  p-3 m-8 border-2 border-bottom border-success '>
+            <div class='row'>
+                <div class='col-9'>
+                    <h3>Product List </h3>
+                </div>
+                <div class='col'>
+                    <a class='btn btn-card border-2 btn-primary' href="src\App\View\AddView.php" value="">ADD</a>
+                </div>
+                <div class='col'>
+                    <input type="submit" name='delete' id='delete-product-btn' class="btn btn-card border-2 btn-danger" value="MASS DELETE">
+                </div>
+            </div>
+        </div>
+        <div class='row'>
 
 
 
-        <div class='col-md-10'>
-            <section class="details-card">
-                <div class="container border border-success">
+            <div class='col'>
+                <div class="box">
+                    <div class="container">
 
-                    <div class="row">
-                        <?php
-                        foreach ($items as $row) { ?>
+                        <div class="row">
+                            <?php
+                            foreach ($items as $row) { ?>
+                                <div class="col-md-3">
+                                    <div class="container border border-success m-2 " style="width:250px;height:200px">
+                                        <input class="delete-checkbox" name='check' type="checkbox" value="<?= $row['id'] ?>" id="flexCheckDefault">
+                                        <div class="container m-2 ">
+                                            <div class=" text-center" ><h5>Name : <?= $row['name'] ?></h5></div>
+                                            <div class=" text-center " ><h5>SKU : <?= $row['SKU'] ?></h5></div>
+                                            <div class=" text-center" ><h5>Price : <?= $row['price'] ?></h5></div>
+                                            <?php if ($row['category_name'] == "Disc") { ?>
+                                                <div class=" text-center" ><h5>Size: <?= $row['size'] ?></h5> </div>
+                                            <?php  } ?>
 
-                            <div class="col-md-3">
-                                <form action='' method='post' >
-                                <input class="delete-checkbox" type="checkbox" name="check"value=""checked id="flexCheckDefault" >
-                                    <div class="card-content ">
-                                        <div class="card-desc">
-                                            <h3> <?= $row['name'] ?></h3>
-                                            <?= $row['id'] ?>
-                                            <?= $row['size'] ?>
+                                            <?php if ($row['category_name'] == "Book") { ?>
+                                                <div class=" text-center" ><h5>Weight: <?= $row['weight'] ?></h5> </div>
+                                            <?php  } ?>
+                                            <?php if ($row['category_name'] == "Furniture") { ?>
+                                                <div class=" text-center" ><h5>Dimensions: <?= $row['dim1'] ?>*<?= $row['dim2'] ?>*<?= $row['dim3'] ?></h5> </div>
+                                            <?php  } ?>
                                         </div>
+
                                     </div>
-                                </form>
-                            </div>
-                        <?php } ?>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
+                </div>
+            </div>
 
-
-
-            </section>
         </div>
 
-
-    </div>
-    <div class='comtainer justify-content-center m-4'>
-
-
-    </div>
-
-
-
-
-
+    </form>
 
 </body>
 
-
+<footer>
+    <div class='container border-top border-success   position-absolute bottom-0 start-50 end-50 translate-middle'>
+    <p class='text-center'>ScandiWeb Task Assighnent</p>
+    </div>
+</footer>
 
 </html>

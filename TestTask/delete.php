@@ -1,12 +1,12 @@
 <?php
 
-include 'database_connection.php';
+include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
 
-if(isset($_POST["id"]))
+if(isset($_POST["check"])==true)
 {
    
-    $userid = $conn->quote($_POST["id"]);
-    $sql = "DELETE FROM pokidky WHERE id = $userid";
+  
+    $sql = "DELETE FROM items";
     $stmt = $conn->prepare($sql);
     //$stmt->execute([$userid]);
     if($conn->query($sql)){
