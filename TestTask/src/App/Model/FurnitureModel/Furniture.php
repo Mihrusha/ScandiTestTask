@@ -22,7 +22,7 @@ class Furniture extends Product
    
    
 
-    function AddFurniture($conn)
+    function Add($conn)
     {
         if (!empty($_POST["name"])) {
            
@@ -43,6 +43,21 @@ class Furniture extends Product
     
                 $conn = null;
             }
+    }
+
+    function getAllitems($conn)
+    {
+        $word="Furniture";
+        $sql = "SELECT*FROM items where category_name = '$word'" ;
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $items = $stmt->fetchAll();
+        } else {
+            $items = 0;
+        }
+
+        return $items;
     }
 
 }

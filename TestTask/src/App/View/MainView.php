@@ -5,6 +5,8 @@ include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
 // $item=new Disc;
 // $items=$item->get_all_items($conn);
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +36,7 @@ include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
                     <h3>Product List </h3>
                 </div>
                 <div class='col'>
-                    <a class='btn btn-card border-2 btn-primary' href="src\App\View\AddView.php" value="">ADD</a>
+                    <a class='btn btn-card border-2 btn-primary' href="AddView.php" value="">ADD</a>
                 </div>
                 <div class='col'>
                     <input type="submit" name='delete' id='delete-product-btn' class="btn btn-card border-2 btn-danger" value="MASS DELETE">
@@ -50,28 +52,100 @@ include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
                     <div class="container">
 
                         <div class="row">
-                            <?php
-                            foreach ($items as $row) { ?>
+
+                            <?php foreach ($disc as $row) { ?>
                                 <div class="col-md-3">
+
                                     <div class="container border border-success m-2 " style="width:250px;height:200px">
                                         <input class="delete-checkbox" name='check' type="checkbox" value="<?= $row['id'] ?>" id="flexCheckDefault">
                                         <div class="container m-2 ">
-                                            <div class=" text-center" ><h5>Name : <?= $row['name'] ?></h5></div>
-                                            <div class=" text-center " ><h5>SKU : <?= $row['SKU'] ?></h5></div>
-                                            <div class=" text-center" ><h5>Price : <?= $row['price'] ?></h5></div>
+                                            <div class=" text-center">
+                                                <h5>Name : <?= $row['name'] ?></h5>
+                                            </div>
+                                            <div class=" text-center ">
+                                                <h5>SKU : <?= $row['SKU'] ?></h5>
+                                            </div>
+                                            <div class=" text-center">
+                                                <h5>Price : <?= $row['price'] ?></h5>
+                                            </div>
                                             <?php if ($row['category_name'] == "Disc") { ?>
-                                                <div class=" text-center" ><h5>Size: <?= $row['size'] ?></h5> </div>
+                                                <div class=" text-center">
+                                                    <h5>Size: <?= $row['size'] ?></h5>
+                                                </div>
                                             <?php  } ?>
 
-                                            <?php if ($row['category_name'] == "Book") { ?>
+                                            <!-- <?php if ($row['category_name'] == "Book") { ?>
                                                 <div class=" text-center" ><h5>Weight: <?= $row['weight'] ?></h5> </div>
                                             <?php  } ?>
                                             <?php if ($row['category_name'] == "Furniture") { ?>
                                                 <div class=" text-center" ><h5>Dimensions: <?= $row['dim1'] ?>*<?= $row['dim2'] ?>*<?= $row['dim3'] ?></h5> </div>
+                                            <?php  } ?> -->
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            <?php } ?>
+
+                            <?php foreach ($book as $row) { ?>
+                                <div class="col-md-3">
+
+                                    <div class="container border border-success m-2 " style="width:250px;height:200px">
+                                        <input class="delete-checkbox" name='check' type="checkbox" value="<?= $row['id'] ?>" id="flexCheckDefault">
+                                        <div class="container m-2 ">
+                                            <div class=" text-center">
+                                                <h5>Name : <?= $row['name'] ?></h5>
+                                            </div>
+                                            <div class=" text-center ">
+                                                <h5>SKU : <?= $row['SKU'] ?></h5>
+                                            </div>
+                                            <div class=" text-center">
+                                                <h5>Price : <?= $row['price'] ?></h5>
+                                            </div>
+
+                                            <?php if ($row['category_name'] == "Book") { ?>
+                                                <div class=" text-center">
+                                                    <h5>Weight: <?= $row['weight'] ?></h5>
+                                                </div>
+                                            <?php  } ?>
+                                            <!-- <?php if ($row['category_name'] == "Furniture") { ?>
+                                                <div class=" text-center">
+                                                    <h5>Dimensions: <?= $row['dim1'] ?>*<?= $row['dim2'] ?>*<?= $row['dim3'] ?></h5>
+                                                </div>
+                                            <?php  } ?> -->
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            <?php } ?>
+
+                            <?php foreach ($furniture as $row) { ?>
+                                <div class="col-md-3">
+
+                                    <div class="container border border-success m-2 " style="width:250px;height:200px">
+                                        <input class="delete-checkbox" name='check' type="checkbox" value="<?= $row['id'] ?>" id="flexCheckDefault">
+                                        <div class="container m-2 ">
+                                            <div class=" text-center">
+                                                <h5>Name : <?= $row['name'] ?></h5>
+                                            </div>
+                                            <div class=" text-center ">
+                                                <h5>SKU : <?= $row['SKU'] ?></h5>
+                                            </div>
+                                            <div class=" text-center">
+                                                <h5>Price : <?= $row['price'] ?></h5>
+                                            </div>
+
+
+                                            <?php if ($row['category_name'] == "Furniture") { ?>
+                                                <div class=" text-center">
+                                                    <h5>Dimensions: <?= $row['dim1'] ?>*<?= $row['dim2'] ?>*<?= $row['dim3'] ?></h5>
+                                                </div>
                                             <?php  } ?>
                                         </div>
 
                                     </div>
+
                                 </div>
                             <?php } ?>
                         </div>
@@ -87,7 +161,7 @@ include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
 
 <footer>
     <div class='container border-top border-success   position-absolute bottom-0 start-50 end-50 translate-middle'>
-    <p class='text-center'>ScandiWeb Task Assighnent</p>
+        <p class='text-center'>ScandiWeb Task Assighnent</p>
     </div>
 </footer>
 

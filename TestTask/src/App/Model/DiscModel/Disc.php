@@ -6,7 +6,7 @@ use App\Model\ProductModel\Product;
 
 class Disc extends Product
 {
-
+    public $size;
     
     public function __construct($id = null, $name = null, $SKU = null, $price = null,$size=null)
     {
@@ -22,25 +22,42 @@ class Disc extends Product
         echo'Hello';
     }
 
-    function AddDisc($conn2)
+    function Add($conn)
     {
         if (!empty($_POST["name"])) {
            
-            $name = $conn2->quote($_POST["name"]);
-            $SKU = $conn2->quote($_POST["SKU"]);
-            $price = $conn2->quote($_POST["price"]);
-            $size = $conn2->quote($_POST["size"]);
-            $category_name=$conn2->quote($_POST["category"]);
-            $sql2 = "INSERT INTO items (name, SKU, price,size,category_name) VALUES ($name, $SKU, $price,$size,$category_name)";
-            $stmt2 = $conn2->prepare($sql2);
-            if ($sql2 != null) {
-                $stmt2->execute();
+            $name = $conn->quote($_POST["name"]);
+            $SKU = $conn->quote($_POST["SKU"]);
+            $price = $conn->quote($_POST["price"]);
+            $size = $conn->quote($_POST["size"]);
+            $category_name=$conn->quote($_POST["category"]);
+            $sql = "INSERT INTO items (name, SKU, price,size,category_name) VALUES ($name, $SKU, $price,$size,$category_name)";
+            $stmt = $conn->prepare($sql);
+            if ($sql != null) {
+                $stmt->execute();
             }
             // header('C:\xampp\htdocs\TestTask\index.php');
 
             $conn = null;
         }
     }
+
+    function getAllitems($conn)
+    {
+        $word='Disc';
+        $sql = "SELECT*FROM items where category_name = '$word'" ;
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $items = $stmt->fetchAll();
+        } else {
+            $items = 0;
+        }
+
+        return $items;
+    }
+
+    
 
 }
 ?>

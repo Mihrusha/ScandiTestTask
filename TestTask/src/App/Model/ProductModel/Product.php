@@ -2,7 +2,7 @@
 
 namespace App\Model\ProductModel;
 
-abstract class Product
+ abstract class Product
 {
     public $id;
     public $name;
@@ -22,35 +22,22 @@ abstract class Product
    
     
 
-    function getAllitems($conn)
-    {
+   abstract function getAllitems($conn);
+    // {
 
-        $sql = "SELECT*FROM items" ;
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            $items = $stmt->fetchAll();
-        } else {
-            $items = 0;
-        }
+        // $sql = "SELECT*FROM items" ;
+        // $stmt = $conn->prepare($sql);
+        // $stmt->execute();
+        // if ($stmt->rowCount() > 0) {
+        //     $items = $stmt->fetchAll();
+        // } else {
+        //     $items = 0;
+        // }
 
-        return $items;
-    }
+        // return $items;
+    // }
 
-    function getAllcategory($conn)
-    {
-
-        $sql = "SELECT* FROM category" ;
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            $items = $stmt->fetchAll();
-        } else {
-            $items = 0;
-        }
-
-        return $items;
-    }
+   
 
     function Delete($conn,$method)
     {
@@ -62,29 +49,29 @@ abstract class Product
        
     }
 
-    function Add($conn)
-    {
-        // if (!empty($_POST["name"])) {
+    abstract function Add($conn);
+    // {
+    //     // if (!empty($_POST["name"])) {
            
-        //     $name = $conn->quote($_POST["name"]);
-        //     $SKU = $conn->quote($_POST["SKU"]);
-        //     $price = $conn->quote($_POST["price"]);
-        //     $weight = $conn->quote($_POST["weight"]);
-        //     $size = $conn->quote($_POST["size"]);
-        //     $height=$conn->quote($_POST["dim1"]);
-        //     $width=$conn->quote($_POST["dim2"]);
-        //     $leght=$conn->quote($_POST["dim3"]);
-        //     $category_name=$conn->quote($_POST["category"]);
-        //     $sql = "INSERT INTO items (name, SKU, price,weight,size,dim1,dim2,dim3,category_name) VALUES ($name, $SKU, $price,$weight,$size,$height,$width,$leght,$category_name)";
-        //     $stmt = $conn->prepare($sql);
-        //     if ($sql != null) {
-        //         $stmt->execute();
-        //     }
-        //     // header('C:\xampp\htdocs\TestTask\index.php');
+    //     //     $name = $conn->quote($_POST["name"]);
+    //     //     $SKU = $conn->quote($_POST["SKU"]);
+    //     //     $price = $conn->quote($_POST["price"]);
+    //     //     $weight = $conn->quote($_POST["weight"]);
+    //     //     $size = $conn->quote($_POST["size"]);
+    //     //     $height=$conn->quote($_POST["dim1"]);
+    //     //     $width=$conn->quote($_POST["dim2"]);
+    //     //     $leght=$conn->quote($_POST["dim3"]);
+    //     //     $category_name=$conn->quote($_POST["category"]);
+    //     //     $sql = "INSERT INTO items (name, SKU, price,weight,size,dim1,dim2,dim3,category_name) VALUES ($name, $SKU, $price,$weight,$size,$height,$width,$leght,$category_name)";
+    //     //     $stmt = $conn->prepare($sql);
+    //     //     if ($sql != null) {
+    //     //         $stmt->execute();
+    //     //     }
+    //     //     // header('C:\xampp\htdocs\TestTask\index.php');
 
-        //     $conn = null;
-        // }
-    }
+    //     //     $conn = null;
+    //     // }
+    // }
 
 
 
