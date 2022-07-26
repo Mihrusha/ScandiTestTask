@@ -1,14 +1,14 @@
 <?php
 
 namespace App;
-require_once __DIR__.'/vendor/autoload.php';
-include 'C:\xampp\htdocs\TestTask\src\App\Core\database_connection.php';
 
 use App\Controller\Controller;
+use App\Model\Book;
 
-$prod=new Controller;
-// $prod->disc->Hello();
+require_once __DIR__.'/vendor/autoload.php';
 
- $prod->getAll($conn);
+
+$controller=new Controller;
+$controller->Main();
 
 ?>
