@@ -7,7 +7,7 @@ use App\Model\Product;
 class Disc extends Product
 {
 
-    public function GetDisc()
+    public function Get()
     {
         $db = new Database;
         $sql = "SELECT disc_id,disc_name,disc_SKU,disc_price,size from discs";
@@ -29,14 +29,23 @@ class Disc extends Product
         $db = new Database;
         $furn=new Furniture;
         $book = new book;
-        if(($book->Check($SKU)>0)||($furn->Check($SKU)>0))
+
+        if($name==''||$SKU==''||$price==''){
+            $massage='error';
+            header("Location: App\View\AddView.php?$massage='Please, submit required data'&''");
+           
+        }
+
+        
+        elseif(($book->Check($SKU)>0)||($furn->Check($SKU)>0)||($this->Check($SKU)>0))
         {
-            echo "Error.Already Exist";
+            $massage='error';
+            header("Location: App\View\AddView.php?$massage='Error Already Exist'&''");
            
         }
 
 
-         else if (!empty($size)&& ($this->Check($SKU)==0)){
+         else
 
             $name = $db->conn->quote($name);
             $SKU = $db->conn->quote($SKU);
@@ -52,13 +61,14 @@ class Disc extends Product
             $stmt = $db->conn->prepare($sql);
             if ($sql != null) {
                 $stmt->execute();
+                header( "Location:index.php");
             }
             // header('C:\xampp\htdocs\TestTask\index.php');
 
-            header( "Location:index.php");
+            
 
 
-        }
+       
     }
     public  function Delete($id)
     {

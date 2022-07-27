@@ -10,7 +10,7 @@ class Book extends Product
 
     public $weight;
 
-    public function GetBook()
+    public function Get()
     {
         $db = new Database;
         $sql = "SELECT book_id,book_name,book_SKU,book_price,weight FROM books";
@@ -39,9 +39,7 @@ class Book extends Product
         $stmt = $db->conn->prepare($sql);
         $stmt->execute();
 
-       
     }
-
 
 
     function AddBook($name,$SKU,$price,$weight)
@@ -49,13 +47,22 @@ class Book extends Product
         $db = new Database;
         $disc=new Disc;
         $furn = new Furniture;
-        if(($disc->Check($SKU)>0)||($furn->Check($SKU)>0))
-        {
-            echo "Error.Already Exist";
         
+  
+        if($name==''||$SKU==''||$price==''){
+           
+            $massage='error';
+            header("Location: App\View\AddView.php?$massage='Please, submit required data'&''");
         }
 
-        else if (!empty($weight)&& ($this->Check($SKU)==0)){
+         else if (($disc->Check($SKU)>0)||($furn->Check($SKU)>0)||$this->Check($SKU)>0)
+        {
+            $massage='error';
+            header("Location: App\View\AddView.php?$massage='Error Already Exist'&''");
+           
+        }
+
+        else
 
             $name = $db->conn->quote($name);
             $SKU = $db->conn->quote($SKU);
@@ -71,11 +78,10 @@ class Book extends Product
             $stmt = $db->conn->prepare($sql);
             if ($sql != null) {
                 $stmt->execute();
+                header( "Location:index.php");
             }
             
-            header( "Location:index.php");
-        }
-      
+              
     }
 
 

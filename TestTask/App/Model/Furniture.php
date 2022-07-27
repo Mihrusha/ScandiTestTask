@@ -6,7 +6,7 @@ use App\Core\Database;
 
 class Furniture extends Product
 {
-    public function GetFurniture()
+    public function Get()
     {
         $db = new Database;
         $sql = "SELECT furniture_id,furniture_name,furniture_SKU,furniture_price,width,height,length FROM furniture";
@@ -45,14 +45,20 @@ class Furniture extends Product
         $db = new Database;
         $disc=new Disc;
         $book = new book;
-        if(($disc->Check($SKU)>0)||($book->Check($SKU)>0))
+        if(($book->Check($SKU)>0)||($disc->Check($SKU)>0)||($this->Check($SKU)>0))
         {
-            echo "Error.Already Exist";
+            $massage='error';
+            header("Location: App\View\AddView.php?$massage='Error Already Exist'&''");
            
         }
 
-       else if (!empty($width)&& ($this->Check($SKU)==0)){
+        elseif($name==''||$SKU==''||$price==''){
+            $massage='error';
+            header("Location: App\View\AddView.php?$massage='Please, submit required data'&''");
+           
+        }
 
+        else
             $name = $db->conn->quote($name);
             $SKU = $db->conn->quote($SKU);
             $price = $db->conn->quote($price);
@@ -71,12 +77,9 @@ class Furniture extends Product
             $stmt = $db->conn->prepare($sql);
             if ($sql != null) {
                 $stmt->execute();
+                header( "Location:index.php");
             }
            
-
-            header( "Location:index.php");
-
-        }
     }
 
     public function Check($SKU)

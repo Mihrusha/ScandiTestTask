@@ -7,6 +7,7 @@ use App\Core\Database;
  abstract class Product
 
 {
+     public abstract function Get();
     
      public function check_input($data) {
           $data = trim($data);
@@ -15,7 +16,7 @@ use App\Core\Database;
           return $data;
         } 
 
-       public  abstract function Check($data);
+     public  abstract function Check($data);
 
 }
 
